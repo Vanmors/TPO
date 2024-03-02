@@ -1,4 +1,4 @@
-import org.example.RedBlackTree;
+import org.example.task2.RedBlackTree;
 import org.junit.jupiter.api.Test;
 
 public class RedBlackTreeTest {

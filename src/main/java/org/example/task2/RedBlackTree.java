@@ -1,4 +1,4 @@
-package org.example;
+package org.example.task2;
 
 public class RedBlackTree {
     private static final boolean RED = true;
@@ -81,7 +81,7 @@ public class RedBlackTree {
         for (int i = 0; i < level; i++) {
             System.out.print("    ");
         }
-        System.out.println(node.key + (node.color == node.color ? " (RED)" : " (BLACK)"));
+        System.out.println(node.key + (node.color == RED ? " (RED)" : " (BLACK)"));
 
         visualize(node.left, level + 1);
     }

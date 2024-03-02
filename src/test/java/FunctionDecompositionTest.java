@@ -1,4 +1,4 @@
-import org.example.FunctionDecomposition;
+import org.example.task1.FunctionDecomposition;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 

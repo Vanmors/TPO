@@ -1,4 +1,4 @@
-package org.example;
+package org.example.task1;
 
 public class FunctionDecomposition {
     public static double decompose(int precision, double value){
