@@ -12,16 +12,17 @@ public class FunctionDecompositionTest {
 
     static Collection<Object[]> data() {
         return Arrays.asList(new Object[][] {
-                { 1, 2, 2 },
-                { 2, 3, 6 },
-                { 5, 7, 35 },
-                { 10, 5, 50 }
+                { 1, 2, 2, "Корректный тест"},
+                { 2, 3, 6, "Некоректный тест"},
+                { 1, 7, 7, "precision 1, результат всегда равен X"},
+                { -5, 5, 50, "Корректный тест"}
         });
     }
 
     @ParameterizedTest
     @MethodSource("data")
-    public void decomposeTest(int a, int b, int expected) {
-        assertEquals(expected, FunctionDecomposition.decompose(a, b), "Сумма некорректна");
+    public void decomposeTest(int precision, int value, int expected, String comment) {
+        System.out.println(comment);
+        assertEquals(expected, FunctionDecomposition.decompose(precision, value), "Разложение некорректно");
     }
 }
