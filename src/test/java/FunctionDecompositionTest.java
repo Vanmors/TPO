@@ -16,6 +16,7 @@ public class FunctionDecompositionTest {
                 { 1, 2, 2.0, "Корректный тест"},
                 { 2, 3, 7.5, "Некоректный тест"},
                 { 1, 7, 7.0, "precision 1, результат всегда равен X"},
+                {12, 3, 2.2231233827984104E9, ""}
         });
     }
 
@@ -29,14 +30,16 @@ public class FunctionDecompositionTest {
     @MethodSource("data")
     public void decomposeTest(int precision, double value, Object expected, String comment) {
         System.out.println(comment);
-        assertEquals(expected, FunctionDecomposition.decompose(precision, value), "Разложение некорректно");
+        FunctionDecomposition functionDecomposition = new FunctionDecomposition();
+        assertEquals(expected, functionDecomposition.decompose(precision, value), "Разложение некорректно");
     }
 
     @ParameterizedTest
     @MethodSource("dataException")
     public void decomposeExceptionTest(int precision, double value, String comment) {
         System.out.println(comment);
-        assertThrows(RuntimeException.class, () -> FunctionDecomposition.decompose(precision, value));
+        FunctionDecomposition functionDecomposition = new FunctionDecomposition();
+        assertThrows(RuntimeException.class, () -> functionDecomposition.decompose(precision, value));
     }
 
 }

@@ -1,7 +1,7 @@
 package org.example.task1;
 
 public class FunctionDecomposition {
-    public static double decompose(int precision, double value){
+    public double decompose(int precision, double value){
         if (precision <= 0) throw new RuntimeException();
         if (precision == 1){
             return value;

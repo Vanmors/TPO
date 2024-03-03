@@ -1,14 +1,21 @@
 package org.example.task2;
 
+import lombok.Getter;
+
+@Getter
 public class RedBlackTree {
     private static final boolean RED = true;
     private static final boolean BLACK = false;
 
     private Node root;
 
-    private class Node {
+    @Getter
+    public class Node {
+
         int key;
+
         Node left, right;
+
         boolean color;
 
         Node(int key, boolean color) {
@@ -69,21 +76,40 @@ public class RedBlackTree {
         return x;
     }
 
-    public void visualize() {
-        visualize(root, 0);
-    }
+//    public void visualize() {
+//        visualize(root, 0);
+//    }
+//
+//    private void visualize(Node node, int level) {
+//        if (node == null) return;
+//
+//        visualize(node.right, level + 1);
+//
+//        for (int i = 0; i < level; i++) {
+//            System.out.print("    ");
+//        }
+//        System.out.println(node.key + (node.color == RED ? " (RED)" : " (BLACK)"));
+//
+//        visualize(node.left, level + 1);
+//    }
 
-    private void visualize(Node node, int level) {
-        if (node == null) return;
+//    public Object[] printTree() {
+//
+//        if (root == null) return null;
+//
+//        Queue<Node> queue = new ArrayDeque<>();
+//
+//        queue.add(root);
+//        List<Integer> output = new ArrayList<>();
+//        while (!queue.isEmpty()) {
+//            Node node = queue.remove();
+//            output.add(node.key);
+//            if (node.left != null) queue.add(node.left);
+//            if (node.right != null) queue.add(node.right);
+//        }
+//
+//        return output.toArray();
+//    }
 
-        visualize(node.right, level + 1);
-
-        for (int i = 0; i < level; i++) {
-            System.out.print("    ");
-        }
-        System.out.println(node.key + (node.color == RED ? " (RED)" : " (BLACK)"));
-
-        visualize(node.left, level + 1);
-    }
 }
 
