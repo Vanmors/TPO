@@ -3,40 +3,23 @@ package org.example.task3;
 // Объект, представляющий толпу
 public class Crowd {
     private boolean dazzledBySun; // ослеплена солнцем
-
+    private boolean astonishment;
     // Конструктор
     public Crowd(boolean dazzledBySun) {
         this.dazzledBySun = dazzledBySun;
+        this.astonishment = false;
     }
 
-    // Метод для реакции толпы на вход катера в залив
     public void reactToYachtEntry(PresidentialYacht yacht) {
+        astonishment = true;
         if (dazzledBySun) {
-            // Толпа ослеплена солнцем
+            System.out.println("Толпа ослеплена солнцем.");
         }
 
-        //yacht.glideOnWaves(); // Реакция толпы на движение катера по волнам
+        yacht.moveOnWaves(new Sea());
+    }
+
+    public boolean isAstonished() {
+        return astonishment;
     }
 }
-
-/*
-// Главный класс для демонстрации событий
-public class Main {
-    public static void main(String[] args) {
-        // Создаем катер
-        PresidentialYacht presidentialYacht = new PresidentialYacht(true);
-
-        // Создаем толпу
-        Crowd crowd = new Crowd(true);
-
-        // Толпа реагирует на вход катера в залив
-        crowd.reactToYachtEntry(presidentialYacht);
-
-        // Опускаем фиктивные стабилизаторы
-        presidentialYacht.deployFakeStabilizers();
-
-        // Катер движется по волнам с опущенными стабилизаторами
-        presidentialYacht.glideOnWaves();
-    }
-}
- */
