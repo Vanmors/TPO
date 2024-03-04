@@ -30,6 +30,19 @@ public class WorldTest {
     }
 
     @Test
+    public void testYachtStopped() {
+        IonizedCushion ionizedCushion = new IonizedCushion();
+        FakeStabilizers fakeStabilizers = new FakeStabilizers();
+        PresidentialYacht presidentialYacht = new PresidentialYacht(ionizedCushion, fakeStabilizers);
+        Sea sea = new Sea();
+
+        presidentialYacht.moveOnWaves(sea);
+        assertEquals(YachtState.STOPPED, presidentialYacht.getState());
+        Assertions.assertFalse(presidentialYacht.getIonizedCushion().isActive());
+        Assertions.assertFalse(presidentialYacht.getFakeStabilizers().isLowered());
+    }
+
+    @Test
     public void testFakeStabilizers() {
         FakeStabilizers fakeStabilizers = new FakeStabilizers();
         Sea sea = new Sea();
@@ -51,14 +64,22 @@ public class WorldTest {
     }
 
     @Test
-    public void testCrowd() {
-        Crowd crowd = new Crowd(true); // толпа ослеплена солнцем
+    public void testCrowdAstonishedTrue() {
+        Crowd crowd = new Crowd(true);
         PresidentialYacht yacht = new PresidentialYacht(null, null);
 
-        Assertions.assertFalse(crowd.isAstonished()); // Проверка начального состояния (не поражена)
-
+        Assertions.assertFalse(crowd.isAstonished());
         crowd.reactToYachtEntry(yacht);
+        Assertions.assertTrue(crowd.isAstonished());
+    }
 
-        Assertions.assertTrue(crowd.isAstonished()); // Проверка поражения толпы
+    @Test
+    public void testCrowdAstonishedFalse(){
+        Crowd crowd = new Crowd(false);
+        PresidentialYacht yacht = new PresidentialYacht(null, null);
+        Assertions.assertFalse(crowd.isAstonished());
+        crowd.reactToYachtEntry(yacht);
+        Assertions.assertTrue(crowd.isAstonished());
+
     }
 }

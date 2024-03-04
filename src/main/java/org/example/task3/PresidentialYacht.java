@@ -36,4 +36,12 @@ public class PresidentialYacht {
     public YachtState getState() {
         return state;
     }
+
+    public IonizedCushion getIonizedCushion(){
+        return ionizedCushion;
+    }
+
+    public FakeStabilizers getFakeStabilizers(){
+        return fakeStabilizers;
+    }
 }

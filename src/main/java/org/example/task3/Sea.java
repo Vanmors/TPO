@@ -10,8 +10,4 @@ public class Sea {
     public void createWaves() {
         waves = true;
     }
-
-    public void removeWaves() {
-        waves = false;
-    }
 }
