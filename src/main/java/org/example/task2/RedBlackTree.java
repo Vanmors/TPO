@@ -32,9 +32,9 @@ public class RedBlackTree {
 
     // Перекрашивание узла
     private void flipColors(Node x) {
-        x.color = !x.color;
-        x.left.color = !x.left.color;
-        x.right.color = !x.right.color;
+        x.color = BLACK;
+        x.left.color = BLACK;
+        x.right.color = BLACK;
     }
 
     // Вставка нового узла в дерево

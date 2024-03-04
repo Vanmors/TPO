@@ -5,18 +5,16 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.Arrays;
 import java.util.Collection;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class FunctionDecompositionTest {
 
 
     static Collection<Object[]> data() {
         return Arrays.asList(new Object[][] {
-                { 1, 2, 2.0, "Корректный тест"},
-                { 2, 3, 7.5, "Некоректный тест"},
-                { 1, 7, 7.0, "precision 1, результат всегда равен X"},
-                {12, 3, 2.2231233827984104E9, ""}
+                { 1, 0.1, 0.1, "Корректный тест"},
+                { 2, 0.3, 0.3045, "Некоректный тест"},
+                { 1, 0.4, 0.4, "precision 1, результат всегда равен X"},
         });
     }
 
@@ -40,6 +38,21 @@ public class FunctionDecompositionTest {
         System.out.println(comment);
         FunctionDecomposition functionDecomposition = new FunctionDecomposition();
         assertThrows(RuntimeException.class, () -> functionDecomposition.decompose(precision, value));
+    }
+
+
+    static Collection<Object[]> dataArcsin() {
+        return Arrays.asList(new Object[][] {
+                {100, 0.5, 0.01}
+        });
+    }
+
+    @ParameterizedTest
+    @MethodSource("dataArcsin")
+    public void decomposeTestArcsin(int iterations, double value, double precision){
+        FunctionDecomposition functionDecomposition = new FunctionDecomposition();
+        boolean expected = Math.asin(value) - functionDecomposition.decompose(iterations, value) < precision;
+        assertTrue(expected);
     }
 
 }
