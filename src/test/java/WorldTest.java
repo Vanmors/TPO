@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class WorldTest {
     @Test
     public void testPresidentialYachtInitialState() {
-        PresidentialYacht presidentialYacht = new PresidentialYacht(null, null);
+        PresidentialYacht presidentialYacht = new PresidentialYacht(null, null, 0);
 
         assertEquals(YachtState.STOPPED, presidentialYacht.getState()); // Проверка начального состояния
     }
@@ -17,7 +17,7 @@ public class WorldTest {
         YachtBottom yachtBottom = new YachtBottom();
         IonizedCushion ionizedCushion = new IonizedCushion(yachtBottom);
         FakeStabilizers fakeStabilizers = new FakeStabilizers();
-        PresidentialYacht presidentialYacht = new PresidentialYacht(ionizedCushion, fakeStabilizers);
+        PresidentialYacht presidentialYacht = new PresidentialYacht(ionizedCushion, fakeStabilizers, 0);
         Sea sea = new Sea();
 
         presidentialYacht.start(); // Тестирование запуска катера
@@ -59,7 +59,7 @@ public class WorldTest {
         YachtBottom yachtBottom = new YachtBottom();
         IonizedCushion ionizedCushion = new IonizedCushion(yachtBottom);
         FakeStabilizers fakeStabilizers = new FakeStabilizers();
-        PresidentialYacht presidentialYacht = new PresidentialYacht(ionizedCushion, fakeStabilizers);
+        PresidentialYacht presidentialYacht = new PresidentialYacht(ionizedCushion, fakeStabilizers, 0);
         Sea sea = new Sea();
 
         presidentialYacht.moveOnWaves(sea);
@@ -94,7 +94,7 @@ public class WorldTest {
     @Test
     public void testCrowdAstonishedTrue() {
         Crowd crowd = new Crowd(true);
-        PresidentialYacht yacht = new PresidentialYacht(null, null);
+        PresidentialYacht yacht = new PresidentialYacht(null, null, 0);
 
         Assertions.assertFalse(crowd.isAstonished());
         crowd.reactToYachtEntry(yacht);
@@ -104,7 +104,7 @@ public class WorldTest {
     @Test
     public void testCrowdAstonishedFalse(){
         Crowd crowd = new Crowd(false);
-        PresidentialYacht yacht = new PresidentialYacht(null, null);
+        PresidentialYacht yacht = new PresidentialYacht(null, null, 0);
         Assertions.assertFalse(crowd.isAstonished());
         crowd.reactToYachtEntry(yacht);
         Assertions.assertTrue(crowd.isAstonished());

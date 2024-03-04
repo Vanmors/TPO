@@ -6,10 +6,13 @@ public class PresidentialYacht {
     private FakeStabilizers fakeStabilizers;
     private YachtState state;
 
-    public PresidentialYacht(IonizedCushion ionizedCushion, FakeStabilizers fakeStabilizers) {
+    private int speed = 0;
+
+    public PresidentialYacht(IonizedCushion ionizedCushion, FakeStabilizers fakeStabilizers, int speed) {
         this.ionizedCushion = ionizedCushion;
         this.fakeStabilizers = fakeStabilizers;
         this.state = YachtState.STOPPED;
+        this.speed = speed;
     }
 
     public void moveOnWaves(Sea sea) {
@@ -25,21 +28,25 @@ public class PresidentialYacht {
     public void moveOnSmoothWater(Sea sea){
         if (ionizedCushion != null && state == YachtState.MOVING) {
             ionizedCushion.deactivate();
+            speed -= 20;
         }
 
         if (fakeStabilizers != null && state == YachtState.MOVING) {
             fakeStabilizers.riseFromTheWater(sea);
+            speed += 20;
         }
     }
 
     // Метод для остановки катера
     public void stop() {
         state = YachtState.STOPPED;
+        speed = 0;
     }
 
     // Метод для старта катера
     public void start() {
         state = YachtState.MOVING;
+        speed = 100;
     }
 
     public YachtState getState() {
