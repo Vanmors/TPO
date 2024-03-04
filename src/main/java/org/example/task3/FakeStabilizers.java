@@ -12,8 +12,8 @@ public class FakeStabilizers {
 
     public void riseFromTheWater(Sea sea) {
         lowered = false;
-        sea.createWaves();
-        sea.madeWalWaves();
+        sea.removeWaves();
+        sea.removeWalWaves();
     }
 
     public boolean isLowered() {

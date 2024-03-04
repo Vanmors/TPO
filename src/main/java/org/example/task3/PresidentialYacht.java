@@ -12,8 +12,6 @@ public class PresidentialYacht {
         this.state = YachtState.STOPPED;
     }
 
-    // Метод для движения катера по волнам
-    //todo ДОБАВИТЬ широкие дуги тут
     public void moveOnWaves(Sea sea) {
         if (ionizedCushion != null && state == YachtState.MOVING) {
             ionizedCushion.activate();
@@ -24,8 +22,6 @@ public class PresidentialYacht {
         }
     }
 
-    //todo А тут широкие дуги убираются.
-    //это гладь.
     public void moveOnSmoothWater(Sea sea){
         if (ionizedCushion != null && state == YachtState.MOVING) {
             ionizedCushion.deactivate();
