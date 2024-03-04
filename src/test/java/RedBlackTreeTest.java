@@ -11,6 +11,7 @@ public class RedBlackTreeTest {
     public void insertTest() {
         RedBlackTree tree = new RedBlackTree();
 
+        // Поиск элемента в пустом дереве
         assertNull(tree.find(4));
         tree.remove(4);
 
@@ -46,6 +47,7 @@ public class RedBlackTreeTest {
         tree.remove(5);
 
         assertTrue(isRedBlackTree(tree.getRoot()));
+        // Поиск удалённого элемента
         assertNull(tree.find(23));
 
         // Добавление элементов в порядке возрастания

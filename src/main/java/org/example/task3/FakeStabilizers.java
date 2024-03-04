@@ -7,11 +7,13 @@ public class FakeStabilizers {
     public void lowerIntoWater(Sea sea) {
         lowered = true;
         sea.createWaves();
+        sea.madeWalWaves();
     }
 
     public void riseFromTheWater(Sea sea) {
         lowered = false;
         sea.createWaves();
+        sea.madeWalWaves();
     }
 
     public boolean isLowered() {
