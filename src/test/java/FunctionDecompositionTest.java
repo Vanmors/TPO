@@ -13,7 +13,6 @@ public class FunctionDecompositionTest {
     static Collection<Object[]> data() {
         return Arrays.asList(new Object[][] {
                 { 1, 0.1, 0.1, "Корректный тест"},
-                { 2, 0.3, 0.3045, "Некоректный тест"},
                 { 1, 0.4, 0.4, "precision 1, результат всегда равен X"},
         });
     }
@@ -43,7 +42,12 @@ public class FunctionDecompositionTest {
 
     static Collection<Object[]> dataArcsin() {
         return Arrays.asList(new Object[][] {
-                {100, 0.5, 0.01}
+                {2, 0.5, 0.01},
+                {100, 0.5, 0.01},
+                {100, 0.1, 0.01},
+                {100, 0.9, 0.1},
+                {1000, -0.4, 0.01},
+                {1000, -0.9, 0.1}
         });
     }
 
@@ -51,7 +55,7 @@ public class FunctionDecompositionTest {
     @MethodSource("dataArcsin")
     public void decomposeTestArcsin(int iterations, double value, double precision){
         FunctionDecomposition functionDecomposition = new FunctionDecomposition();
-        boolean expected = Math.asin(value) - functionDecomposition.decompose(iterations, value) < precision;
+        boolean expected = Math.abs(Math.asin(value) - functionDecomposition.decompose(iterations, value)) < precision;
         assertTrue(expected);
     }
 

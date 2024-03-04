@@ -2,6 +2,9 @@ package org.example.task2;
 
 import lombok.Getter;
 
+import java.util.ArrayDeque;
+import java.util.Queue;
+
 @Getter
 public class RedBlackTree {
     private static final boolean RED = true;
@@ -76,40 +79,53 @@ public class RedBlackTree {
         return x;
     }
 
-//    public void visualize() {
-//        visualize(root, 0);
-//    }
-//
-//    private void visualize(Node node, int level) {
-//        if (node == null) return;
-//
-//        visualize(node.right, level + 1);
-//
-//        for (int i = 0; i < level; i++) {
-//            System.out.print("    ");
-//        }
-//        System.out.println(node.key + (node.color == RED ? " (RED)" : " (BLACK)"));
-//
-//        visualize(node.left, level + 1);
-//    }
 
-//    public Object[] printTree() {
-//
-//        if (root == null) return null;
-//
-//        Queue<Node> queue = new ArrayDeque<>();
-//
-//        queue.add(root);
-//        List<Integer> output = new ArrayList<>();
-//        while (!queue.isEmpty()) {
-//            Node node = queue.remove();
-//            output.add(node.key);
-//            if (node.left != null) queue.add(node.left);
-//            if (node.right != null) queue.add(node.right);
-//        }
-//
-//        return output.toArray();
-//    }
+    public Node find(int value) {
+
+        if (root == null) return null;
+
+        Queue<Node> queue = new ArrayDeque<>();
+
+        queue.add(root);
+        Node output = null;
+
+        while (!queue.isEmpty()) {
+            Node node = queue.remove();
+            if (node.key == value) {
+                output = node;
+            }
+            if (node.left != null) queue.add(node.left);
+            if (node.right != null) queue.add(node.right);
+        }
+
+        return output;
+    }
+
+    public void remove(int key) {
+        root = removeElement(root, key);
+        if (root != null) root.color = BLACK;
+    }
+
+    private Node removeElement(Node h, int key) {
+        if (h == null) return null;
+
+        if (key < h.key) {
+            h.left = removeElement(h.left, key);
+        } else if (key > h.key) {
+            h.right = removeElement(h.right, key);
+        } else {
+            if (h.right == null) return h.left;
+
+            Node minRight = h.right;
+            h.key = minRight.key;
+        }
+
+        if (isRed(h.right)) {
+            h = rotateLeft(h);
+        }
+
+        return h;
+    }
 
 }
 

@@ -3,14 +3,16 @@ import org.junit.jupiter.api.Test;
 import org.junit.platform.engine.support.hierarchical.Node;
 
 import static java.awt.Color.BLACK;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class RedBlackTreeTest {
 
     @Test
     public void insertTest() {
         RedBlackTree tree = new RedBlackTree();
+
+        assertNull(tree.find(4));
+        tree.remove(4);
 
         // Проверка вставки в пустое дерево
         tree.insert(10);
@@ -24,9 +26,27 @@ public class RedBlackTreeTest {
         tree.insert(7);
         tree.insert(12);
         tree.insert(18);
+        tree.insert(-3);
+        tree.insert(23);
 
         // Проверка свойств дерева
         assertTrue(isRedBlackTree(tree.getRoot()));
+
+        // Проверка поиска элемента
+        assertEquals(tree.find(23).getKey(), 23);
+
+        tree.remove(5);
+        tree.remove(23);
+        tree.remove(18);
+        tree.remove(15);
+        tree.remove(3);
+        tree.remove(7);
+        tree.remove(12);
+        tree.remove(-3);
+        tree.remove(5);
+
+        assertTrue(isRedBlackTree(tree.getRoot()));
+        assertNull(tree.find(23));
 
         // Добавление элементов в порядке возрастания
         tree = new RedBlackTree();
