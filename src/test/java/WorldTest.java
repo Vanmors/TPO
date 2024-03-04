@@ -38,7 +38,7 @@ public class WorldTest {
         YachtBottom yachtBottom = new YachtBottom();
         IonizedCushion ionizedCushion = new IonizedCushion(yachtBottom);
         FakeStabilizers fakeStabilizers = new FakeStabilizers();
-        PresidentialYacht presidentialYacht = new PresidentialYacht(ionizedCushion, fakeStabilizers);
+        PresidentialYacht presidentialYacht = new PresidentialYacht(ionizedCushion, fakeStabilizers, 0);
         Sea sea = new Sea();
 
         presidentialYacht.start(); // Тестирование запуска катера
@@ -49,6 +49,35 @@ public class WorldTest {
         Assertions.assertFalse(presidentialYacht.getIonizedCushion().isActive());
         Assertions.assertFalse(presidentialYacht.getFakeStabilizers().isLowered());
         Assertions.assertTrue(ionizedCushion.getYachtBottom().isDowned());
+
+        presidentialYacht.stop(); // Тестирование остановки катера
+        assertEquals(YachtState.STOPPED, presidentialYacht.getState());
+    }
+
+    @Test
+    public void testYachtMovementOnSmoothWater2() {
+        YachtBottom yachtBottom = new YachtBottom();
+        IonizedCushion ionizedCushion = new IonizedCushion(yachtBottom);
+        FakeStabilizers fakeStabilizers = new FakeStabilizers();
+        PresidentialYacht presidentialYacht = new PresidentialYacht(ionizedCushion, fakeStabilizers, 0);
+        Sea sea = new Sea();
+
+        presidentialYacht.moveOnSmoothWater(sea); // Тестирование движения катера
+
+        Assertions.assertFalse(presidentialYacht.getIonizedCushion().isActive());
+        Assertions.assertFalse(presidentialYacht.getFakeStabilizers().isLowered());
+        Assertions.assertTrue(ionizedCushion.getYachtBottom().isDowned());
+
+        presidentialYacht.stop(); // Тестирование остановки катера
+        assertEquals(YachtState.STOPPED, presidentialYacht.getState());
+    }
+
+    @Test
+    public void testYachtMovementOnSmoothWater3() {
+        PresidentialYacht presidentialYacht = new PresidentialYacht(null, null, 0);
+        Sea sea = new Sea();
+
+        presidentialYacht.moveOnSmoothWater(sea); // Тестирование движения катера
 
         presidentialYacht.stop(); // Тестирование остановки катера
         assertEquals(YachtState.STOPPED, presidentialYacht.getState());
