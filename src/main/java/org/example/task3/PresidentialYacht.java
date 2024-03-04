@@ -4,14 +4,11 @@ package org.example.task3;
 public class PresidentialYacht {
     private IonizedCushion ionizedCushion;
     private FakeStabilizers fakeStabilizers;
-
-    private YachtBottom yachtBottom;
     private YachtState state;
 
-    public PresidentialYacht(IonizedCushion ionizedCushion, FakeStabilizers fakeStabilizers, YachtBottom yachtBottom) {
+    public PresidentialYacht(IonizedCushion ionizedCushion, FakeStabilizers fakeStabilizers) {
         this.ionizedCushion = ionizedCushion;
         this.fakeStabilizers = fakeStabilizers;
-        this.yachtBottom = yachtBottom;
         this.state = YachtState.STOPPED;
     }
 
@@ -25,10 +22,6 @@ public class PresidentialYacht {
         if (fakeStabilizers != null && state == YachtState.MOVING) {
             fakeStabilizers.lowerIntoWater(sea);
         }
-
-        if (yachtBottom != null && state == YachtState.MOVING) {
-            yachtBottom.BottomsUp();
-        }
     }
 
     //todo А тут широкие дуги убираются.
@@ -40,10 +33,6 @@ public class PresidentialYacht {
 
         if (fakeStabilizers != null && state == YachtState.MOVING) {
             fakeStabilizers.riseFromTheWater(sea);
-        }
-
-        if (yachtBottom != null && state == YachtState.MOVING) {
-            yachtBottom.BottomsDown();
         }
     }
 
@@ -67,9 +56,5 @@ public class PresidentialYacht {
 
     public FakeStabilizers getFakeStabilizers(){
         return fakeStabilizers;
-    }
-
-    public YachtBottom getYachtBottom() {
-        return yachtBottom;
     }
 }
