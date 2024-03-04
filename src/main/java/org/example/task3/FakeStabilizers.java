@@ -5,8 +5,12 @@ public class FakeStabilizers {
     private boolean lowered;
 
     public void lowerIntoWater(Sea sea) {
-        // Код для опускания стабилизаторов
         lowered = true;
+        sea.createWaves();
+    }
+
+    public void riseFromTheWater(Sea sea) {
+        lowered = false;
         sea.createWaves();
     }
 

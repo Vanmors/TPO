@@ -15,8 +15,14 @@ public class IonizedCushion {
         System.out.println("Ионизированная подушка активирована.");
     }
 
+    public void deactivate() {
+        active = false;
+        System.out.println("Ионизированная подушка деактивирована.");
+    }
+
     // Метод для проверки активности подушки
     public boolean isActive() {
         return active;
     }
+
 }
